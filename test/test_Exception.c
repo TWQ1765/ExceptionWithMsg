@@ -107,11 +107,11 @@ void throwError(char *msg, int errorCode){
 }
 */
 
-
+/*
 void test_printfAllNumber(void){
 	printfAllNumber("%f , %d, %x , %s",1234.56789, 654217,255, "Ooi" );
 }
-
+*/
 
 /*
 void test_getName_Given_4_expect_ERR_OUT_OF_BOUND(void){

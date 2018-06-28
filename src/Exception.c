@@ -1,15 +1,17 @@
 #include "Exception.h"
+#include <stdarg.h>
+#include <stdlib.h>
 
 void throwError(int errorCode, char *format, ...){
 	va_list valist;
-	int neededSide;
+	int neededSize;
 	char *buffer;
 	Exception *ex;
 	
 	va_start(valist, format);
 	ex = (Exception *)malloc(sizeof(Exception));
 	neededSize = vsnprintf(NULL,0,format,valist)+1;
-	buffer malloc(neededSize);
+	buffer = malloc(neededSize);
 	vsnprintf(buffer,neededSize,format,valist );
 	va_end(valist);
 	
@@ -21,7 +23,8 @@ void throwError(int errorCode, char *format, ...){
 
 void freeError(Exception *ex){
 	if(ex){
-		if(ex-.errorMsg)
+		if(ex->errorMsg)
 			free(ex->errorMsg);
 		free(ex);
+}
 }
