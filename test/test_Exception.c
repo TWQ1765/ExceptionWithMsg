@@ -87,10 +87,13 @@ void test_add_given_9_8_7_expect_15(void){
 
 void printfAllNumber(char * format, ...){
 	va_list valist;
-	char buffer[1024];
+	char *buffer;
+	int neededSize;
 
 	va_start(valist, format);
-	vsnprintf(buffer, 1024,format, valist );
+	neededSize = vsnprintf(NULL,0,format, valist )+1;
+	buffer = malloc(neededSize);
+	vsnprintf(buffer, neededSize,format, valist );
 	va_end(valist);
 	
 	printf(buffer);	
@@ -98,9 +101,8 @@ void printfAllNumber(char * format, ...){
 
 void test_printfAllNumber(void){
 	printfAllNumber("%f , %d, %x , %s",1234.56789, 654217,255, "Ooi" );
-	
-	
 }
+
 
 /*
 void test_getName_Given_4_expect_ERR_OUT_OF_BOUND(void){
