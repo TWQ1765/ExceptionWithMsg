@@ -1,9 +1,10 @@
 #include "unity.h"
 #include "Exception.h"
 #include "CException.h"
+#include "CExceptionConfig.h"
 #include <stdio.h>
 #include <stdarg.h>
-
+#include <malloc.h>
 
 void setUp(void)
 {
@@ -25,14 +26,22 @@ char * names[] = {
 	"Ah Beng",
 	"Sally"
 };
-
 /*
-void throwError(char *msg, int errorCode){
-	//static Exception exceprion = {3, "Error ...%d",index}
+//doing printf with throwError 
+void throwError(int errorCode, char * format, ...){
+	va_list valist;
+	char *buffer;
+	int neededSize;
 	Exception *ex = (Exception *)malloc(sizeof(Exception));
 	ex->errorCode = errorCode;
-	ex->errorMsg = msg;
-	Throw(ex);
+	
+	va_start(valist, format);
+	neededSize = vsnprintf(NULL,0,format, valist )+1;
+	buffer = malloc(neededSize);
+	vsnprintf(buffer, neededSize,format, valist );
+	va_end(valist);
+	ex->errorMsg = buffer;
+	Throw(ex);	
 }
 */
 /*
@@ -59,6 +68,7 @@ Try{
 }
 }
 */
+/*
 int add(int num, ...){
 	va_list valist;
 	int i ,sum = 0;
@@ -70,34 +80,33 @@ int add(int num, ...){
 	va_end(valist);
 	return sum;
 }
-
-
+*/
+/*
 void test_add_given_1_2_3_4_5_expect_15(void){
 	int result = add(5,1,2,3,4,5);
 	
 	TEST_ASSERT_EQUAL(14,result);
 	
 }
+*/
+/*
 void test_add_given_9_8_7_expect_15(void){
 	int result = add(3,9,8,7);
 	
 	TEST_ASSERT_EQUAL(25,result);
 	
 }
-
-void printfAllNumber(char * format, ...){
-	va_list valist;
-	char *buffer;
-	int neededSize;
-
-	va_start(valist, format);
-	neededSize = vsnprintf(NULL,0,format, valist )+1;
-	buffer = malloc(neededSize);
-	vsnprintf(buffer, neededSize,format, valist );
-	va_end(valist);
-	
-	printf(buffer);	
+*/
+/*
+void throwError(char *msg, int errorCode){
+	//static Exception exceprion = {3, "Error ...%d",index}
+	Exception *ex = (Exception *)malloc(sizeof(Exception));
+	ex->errorCode = errorCode;
+	ex->errorMsg = msg;
+	Throw(ex);
 }
+*/
+
 
 void test_printfAllNumber(void){
 	printfAllNumber("%f , %d, %x , %s",1234.56789, 654217,255, "Ooi" );
