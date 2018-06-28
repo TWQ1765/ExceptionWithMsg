@@ -6,7 +6,7 @@
 ## should have:
 ### CExceptionConfig.h
 
-## when apply Try Catch cant have TEST_ASSERT_....
+## when apply Try Catch cant have TEST_ASSERT_....BUT
 ### Try{
 ###	  name = getName(1);
 ###	  TEST_ASSERT_EQUAL_STRING("David", name);
