@@ -2,6 +2,8 @@
 #include "Exception.h"
 #include "CException.h"
 #include <stdio.h>
+#include <stdarg.h>
+
 
 void setUp(void)
 {
@@ -24,15 +26,25 @@ char * names[] = {
 	"Sally"
 };
 
-
-
-
+/*
+void throwError(char *msg, int errorCode){
+	//static Exception exceprion = {3, "Error ...%d",index}
+	Exception *ex = (Exception *)malloc(sizeof(Exception));
+	ex->errorCode = errorCode;
+	ex->errorMsg = msg;
+	Throw(ex);
+}
+*/
+/*
 char *getName(int index){
-	if(index >= 4 || index < 0 )
-	Throw("Error Out of bound of the array.");
+	if(index >= 4 || index < 0 ) {
+	//Throw("Error Out of bound of the array.");
+	throwError(3, "Error ...%d",index);
+	}
 	return names[index];
 }
-
+*/
+/*
 void test_getName_Given_minus_1_expect_ERR_OUT_OF_BOUND(void){
 	CEXCEPTION_T e;
 	char *name;
@@ -46,8 +58,34 @@ Try{
 	printf("\t%s",e);
 }
 }
+*/
+int add(int num, ...){
+	va_list valist;
+	int i ,sum = 0;
+	
+	va_start(valist, num);
+	for(i =0 ; i < num; i++){
+		sum += va_arg(valist, int);
+	}
+	va_end(valist);
+	return sum;
+}
 
-///*
+
+void test_add_given_1_2_3_4_5_expect_15(void){
+	int result = add(5,1,2,3,4,5);
+	
+	TEST_ASSERT_EQUAL(14,result);
+	
+}
+void test_add_given_9_8_7_expect_15(void){
+	int result = add(3,9,8,7);
+	
+	TEST_ASSERT_EQUAL(25,result);
+	
+}
+
+/*
 void test_getName_Given_4_expect_ERR_OUT_OF_BOUND(void){
 	CEXCEPTION_T e;
 	char *name;
@@ -60,8 +98,8 @@ Try{
 	printf("\t%s",e);
 }		
 }
-//*/
-///*
+*/
+/*
 void test_getName_Given_1_expect_David(void){
 	CEXCEPTION_T e;
 	char *name;
@@ -73,4 +111,4 @@ Try{
 	TEST_FAIL_MESSAGE("Expected not to be thrown, but received one.");
 }		
 }
-//*///
+*/
