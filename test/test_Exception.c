@@ -85,6 +85,23 @@ void test_add_given_9_8_7_expect_15(void){
 	
 }
 
+void printfAllNumber(char * format, ...){
+	va_list valist;
+	char buffer[1024];
+
+	va_start(valist, format);
+	vsnprintf(buffer, 1024,format, valist );
+	va_end(valist);
+	
+	printf(buffer);	
+}
+
+void test_printfAllNumber(void){
+	printfAllNumber("%f , %d, %x , %s",1234.56789, 654217,255, "Ooi" );
+	
+	
+}
+
 /*
 void test_getName_Given_4_expect_ERR_OUT_OF_BOUND(void){
 	CEXCEPTION_T e;

@@ -1,7 +1,7 @@
 #ifndef _EXCEPTION_H
 #define _EXCEPTION_H
 /*
-typedef Exception exception;
+typedef struct Exception exception;
 struct exception{
 	int errorCode;
 	char* errorMsg;
